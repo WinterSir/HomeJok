@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath></OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HomeJok.IServices\HomeJok.IServices.csproj" />
+    <ProjectReference Include="..\HomeJok.Repository\HomeJok.Repository.csproj" />
+  </ItemGroup>
+
+</Project>

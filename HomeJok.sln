@@ -5,7 +5,13 @@ VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeJok.Api", "HomeJok.Api\HomeJok.Api.csproj", "{ACF14C37-8A6F-42D9-AD22-F14EF877A94F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeJok.Model", "HomeJok.Model\HomeJok.Model.csproj", "{05F972C1-07F8-447A-B99C-C7E20676EDB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeJok.Model", "HomeJok.Model\HomeJok.Model.csproj", "{05F972C1-07F8-447A-B99C-C7E20676EDB2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeJok.Services", "HomeJok.Services\HomeJok.Services.csproj", "{95663A08-6983-47C2-927F-6EECAD1FF184}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeJok.IServices", "HomeJok.IServices\HomeJok.IServices.csproj", "{A00A1B2A-C4DA-401E-A396-2F7D343136C2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeJok.Repository", "HomeJok.Repository\HomeJok.Repository.csproj", "{E19305DC-77C2-4E08-B22B-32E052736DF1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +27,18 @@ Global
 		{05F972C1-07F8-447A-B99C-C7E20676EDB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05F972C1-07F8-447A-B99C-C7E20676EDB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05F972C1-07F8-447A-B99C-C7E20676EDB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95663A08-6983-47C2-927F-6EECAD1FF184}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95663A08-6983-47C2-927F-6EECAD1FF184}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95663A08-6983-47C2-927F-6EECAD1FF184}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95663A08-6983-47C2-927F-6EECAD1FF184}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A00A1B2A-C4DA-401E-A396-2F7D343136C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A00A1B2A-C4DA-401E-A396-2F7D343136C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A00A1B2A-C4DA-401E-A396-2F7D343136C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A00A1B2A-C4DA-401E-A396-2F7D343136C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E19305DC-77C2-4E08-B22B-32E052736DF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E19305DC-77C2-4E08-B22B-32E052736DF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E19305DC-77C2-4E08-B22B-32E052736DF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E19305DC-77C2-4E08-B22B-32E052736DF1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
