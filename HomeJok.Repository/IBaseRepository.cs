@@ -13,25 +13,31 @@ namespace HomeJok.Repository
         /// </summary>
         /// <param name="t"></param>
         /// <returns></returns>
-        Task<T> Query(Expression<Func<T, bool>> predicate = null);
-
+        Task<T> Find(Expression<Func<T, bool>> predicate = null);
+      
         /// <summary>
         /// 查询实体集合
         /// </summary>
         /// <returns></returns>
-        Task<List<T>> Query();
+        Task<List<T>> QueryList(Expression<Func<T, bool>> predicate = null);
+
+        /// <summary>
+        /// 分页查询实体集合
+        /// </summary>
+        /// <returns></returns>
+        Task<List<T>> QueryPagedList(int pageIndex, int pageSize, Expression<Func<T, bool>> predicate = null);
 
         /// <summary>
         /// 新增实体，返回结果Bool
         /// </summary>
         /// <returns></returns>
-        Task<bool> Insert(T t);
+        Task<T> Insert(T t);
 
         /// <summary>
-        /// 新增实体，返回实体
+        /// 新增实体，返回结果Bool
         /// </summary>
         /// <returns></returns>
-        Task<T> InsertReturnEntity(T t);
+        Task<bool> InsertMany(IEnumerable<T> t);
 
         /// <summary>
         /// 修改实体，返回结果Bool
@@ -40,10 +46,23 @@ namespace HomeJok.Repository
         Task<bool> Update(T t);
 
         /// <summary>
-        /// 条件删除实体，返回结果Bool
+        /// 修改实体集合，返回结果Bool
+        /// </summary>
+        /// <returns></returns>
+        Task<bool> UpdateMany(IEnumerable<T> t);
+
+        /// <summary>
+        /// 删除实体，返回结果Bool
         /// </summary>
         /// <param name="t"></param>
         /// <returns></returns>
-        Task<bool> Delete(Expression<Func<T, bool>> predicate = null);
+        Task<bool> Delete(T t);
+
+        /// <summary>
+        /// 删除实体集合，返回结果Bool
+        /// </summary>
+        /// <param name="t"></param>
+        /// <returns></returns>
+        Task<bool> DeleteMany(IEnumerable<T> t);
     }
 }

@@ -3,6 +3,7 @@ using HomeJok.Model;
 using HomeJok.Model.Models;
 using HomeJok.Model.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +11,13 @@ using System.Threading.Tasks;
 
 namespace HomeJok.Api.Controllers
 {
-    [Route("api/[controller]/[action]")]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
+        private readonly ILogger<AccountController> _logger;
         private readonly IUserInfoService _userInfoService;
-        public AccountController(IUserInfoService userInfoService)
+        public AccountController(ILogger<AccountController> logger, IUserInfoService userInfoService)
         {
+            _logger = logger;
             _userInfoService = userInfoService;
         }
 
@@ -36,7 +38,7 @@ namespace HomeJok.Api.Controllers
                 rpm.ResponseInfo = "登录成功";
                 rpm.ResponseData = new UserInfo()
                 {
-                    UserId = 1,
+                    Id = 1,
                     UserName = "wintersir",
                     Password = "homejok.com"
                 };
@@ -47,7 +49,7 @@ namespace HomeJok.Api.Controllers
                 rpm.ResponseInfo = "用户名或密码错误";
             }
             return rpm;
-        } 
+        }
         #endregion
 
         /// <summary>
@@ -59,7 +61,9 @@ namespace HomeJok.Api.Controllers
         public async Task<ResponseModel> InsertUserInfo(UserInfo userInfo)
         {
             ResponseModel rpm = new ResponseModel();
+            _logger.LogInformation("开始：AccountController调用UserInfoService方法InsertUserInfo");
             userInfo = await _userInfoService.InsertUserInfo(userInfo);
+            _logger.LogInformation("结束：AccountController调用UserInfoService方法InsertUserInfo");
             if (userInfo != null)
             {
                 rpm.ResponseState = true;

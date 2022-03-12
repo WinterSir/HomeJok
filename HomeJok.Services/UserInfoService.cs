@@ -22,7 +22,7 @@ namespace HomeJok.Services
         /// <returns></returns>
         public async Task<UserInfo> InsertUserInfo(UserInfo userInfo)
         {
-            return await _db.InsertReturnEntity(userInfo);
+            return await _db.Insert(userInfo);
         }
     }
 }
