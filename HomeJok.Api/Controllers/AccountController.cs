@@ -2,6 +2,7 @@
 using HomeJok.Model;
 using HomeJok.Model.Models;
 using HomeJok.Model.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -51,6 +52,30 @@ namespace HomeJok.Api.Controllers
             return rpm;
         }
         #endregion
+
+        /// <summary>
+        /// 查询用户列表
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [Authorize]
+        public async Task<ResponseModel> GetUserInfo()
+        {
+            ResponseModel rpm = new ResponseModel();
+            List<UserInfo> ulist = await _userInfoService.GetUserInfo();
+            if (ulist.Count() > 0)
+            {
+                rpm.ResponseState = true;
+                rpm.ResponseInfo = "获取成功";
+                rpm.ResponseData = ulist;
+            }
+            else
+            {
+                rpm.ResponseState = false;
+                rpm.ResponseInfo = "数据为空";
+            }
+            return rpm;
+        }
 
         /// <summary>
         /// 保存用户信息

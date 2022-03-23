@@ -2,6 +2,7 @@
 using HomeJok.Model.Models;
 using HomeJok.Repository;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace HomeJok.Services
@@ -13,6 +14,11 @@ namespace HomeJok.Services
         public UserInfoService(IBaseRepository<UserInfo> db)
         {
             _db = db;
+        }
+
+        public async Task<List<UserInfo>> GetUserInfo()
+        {
+            return await _db.QueryList();
         }
 
         /// <summary>

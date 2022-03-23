@@ -31,7 +31,6 @@ namespace HomeJok.Api
         {
             //注入appsettings.json帮助类
             services.AddSingleton(new Appsettings(Configuration));
-
             //注入EFCore PostgreSQL
             services.AddDbContext<WinterSirContext>(options =>
             {
@@ -41,16 +40,22 @@ namespace HomeJok.Api
                     efoptions.MigrationsAssembly("HomeJok.Repository");
                 });
             });
-
             services.AddControllers(options =>
             {
                 options.Filters.Add<ExceptionFilter>(); //异常过滤器
             });
-
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "HomeJok.Api", Version = "v1" });
             });
+
+            services.AddAuthentication("Bearer")
+              .AddIdentityServerAuthentication(options =>
+              {
+                  options.Authority = "http://localhost:5000";
+                  options.ApiName = "HomeJokApi";               //跟ids4认证配置中的ApiResource一致
+                  options.RequireHttpsMetadata = false;
+              });
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
@@ -73,19 +78,17 @@ namespace HomeJok.Api
         {
             app.UseMiddleware<ExceptionMiddleware>();
             //app.UseMiddleware<TestExceptionMiddleware>();
-
             if (env.IsDevelopment())
             {
                 //app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "HomeJok.Api v1"));
             }
-
             app.UseHttpsRedirection();
-
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseAuthentication();//鉴权
+            app.UseAuthorization();//授权
 
             app.UseEndpoints(endpoints =>
             {
