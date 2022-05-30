@@ -4,6 +4,7 @@ using Autofac.Extras.DynamicProxy;
 using HomeJok.Api;
 using HomeJok.Repository;
 using HomeJok.Repository.EF;
+using IdentityModel;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System;
+using System.IdentityModel.Tokens.Jwt;
 using System.IO;
 using System.Reflection;
 
@@ -52,10 +54,22 @@ namespace HomeJok.Api
             services.AddAuthentication("Bearer")
               .AddIdentityServerAuthentication(options =>
               {
-                  options.Authority = "http://localhost:5000";
-                  options.ApiName = "HomeJokApi";               //跟ids4认证配置中的ApiResource一致
-                  options.RequireHttpsMetadata = false;
+                  options.Authority = "https://login.wintersir.com";
+                  options.ApiName = "HomeJokApi";
+                  options.RequireHttpsMetadata = true;
               });
+
+
+            services.AddCors(c =>
+            {
+                //允许所有请求
+                c.AddPolicy("Free", policy =>
+                {
+                    policy.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                });
+            });
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
@@ -78,17 +92,19 @@ namespace HomeJok.Api
         {
             app.UseMiddleware<ExceptionMiddleware>();
             //app.UseMiddleware<TestExceptionMiddleware>();
-            if (env.IsDevelopment())
-            {
-                //app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "HomeJok.Api v1"));
-            }
+            //if (env.IsDevelopment())
+            //{
+            //app.UseDeveloperExceptionPage();
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "HomeJok.Api v1"));
+            //}
             app.UseHttpsRedirection();
             app.UseRouting();
 
             app.UseAuthentication();//鉴权
             app.UseAuthorization();//授权
+
+            app.UseCors("Free");
 
             app.UseEndpoints(endpoints =>
             {

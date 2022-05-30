@@ -18,10 +18,10 @@ namespace HomeJok.Model.Models
         public DateTime Birthday { get; set; }
         public string Address { get; set; }
         public bool ActiveState { get; set; }
-        public DateTime LastLoginTime { get; set; }
+        public DateTime? LastLoginTime { get; set; }
         public int CreateUser { get; set; }
         public DateTime CreateTime { get; set; }
-        public int UpdateUser { get; set; }
-        public DateTime UpdateTime { get; set; }
+        public int? UpdateUser { get; set; }
+        public DateTime? UpdateTime { get; set; }
     }
 }

@@ -27,7 +27,7 @@ namespace HomeJok.Repository
         /// </summary>
         /// <returns></returns>
         Task<List<T>> QueryPagedList(int pageIndex, int pageSize, Expression<Func<T, bool>> predicate = null, CancellationToken cancellationToken = default);
-
+        List<T> QueryListSql(string sql, object[] param);
         /// <summary>
         /// 新增实体，返回结果Bool
         /// </summary>

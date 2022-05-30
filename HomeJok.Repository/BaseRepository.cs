@@ -54,6 +54,11 @@ namespace HomeJok.Repository
                                       .Take(pageSize).ToListAsync(cancellationToken).ConfigureAwait(false);
         }
 
+        public List<T> QueryListSql(string sql, object[] param)
+        {
+            return _context.Set<T>().FromSqlRaw(sql, param).AsNoTracking().ToList();
+        }
+
         /// <summary>
         /// 新增实体，返回结果Bool
         /// </summary>

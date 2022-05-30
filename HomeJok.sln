@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30717.126
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32407.343
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeJok.Api", "HomeJok.Api\HomeJok.Api.csproj", "{ACF14C37-8A6F-42D9-AD22-F14EF877A94F}"
 EndProject
@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeJok.IServices", "HomeJo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeJok.Repository", "HomeJok.Repository\HomeJok.Repository.csproj", "{E19305DC-77C2-4E08-B22B-32E052736DF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeJok.Authentication", "HomeJok.Authentication\HomeJok.Authentication.csproj", "{4475255D-E14A-4239-9F41-B81684CDD91E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeJok.Authentication", "HomeJok.Authentication\HomeJok.Authentication.csproj", "{4475255D-E14A-4239-9F41-B81684CDD91E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeJok.Mvc", "..\mvc\HomeJok.Mvc\HomeJok.Mvc.csproj", "{9EE7E76D-3110-445A-966E-94F276E8E324}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{4475255D-E14A-4239-9F41-B81684CDD91E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4475255D-E14A-4239-9F41-B81684CDD91E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4475255D-E14A-4239-9F41-B81684CDD91E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EE7E76D-3110-445A-966E-94F276E8E324}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EE7E76D-3110-445A-966E-94F276E8E324}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EE7E76D-3110-445A-966E-94F276E8E324}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EE7E76D-3110-445A-966E-94F276E8E324}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

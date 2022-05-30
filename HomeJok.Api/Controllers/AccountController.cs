@@ -23,34 +23,65 @@ namespace HomeJok.Api.Controllers
         }
 
         #region 登录
-
         /// <summary>
         /// 登录
         /// </summary>
         /// <param name="login"></param>
         /// <returns></returns>
         [HttpPost]
+        [Authorize]
         public async Task<ResponseModel> Login(AccountVM login)
         {
             ResponseModel rpm = new ResponseModel();
-            if ((login.Account == "wintersir" || login.Account == "guest") && login.Password == "homejok.com")
+            try
             {
-                rpm.ResponseState = true;
-                rpm.ResponseInfo = "登录成功";
-                rpm.ResponseData = new UserInfo()
+                UserInfo user =  _userInfoService.Login(login.account);
+                if (user != null)
                 {
-                    Id = 1,
-                    UserName = "wintersir",
-                    Password = "homejok.com"
-                };
+                    rpm.ResponseState = true;
+                    rpm.ResponseInfo = "登录成功";
+                    rpm.ResponseData = user;
+                }
+                else
+                {
+                    rpm.ResponseState = false;
+                    rpm.ResponseInfo = "获取登录信息失败";
+                }
             }
-            else
+            catch (Exception ex)
             {
                 rpm.ResponseState = false;
-                rpm.ResponseInfo = "用户名或密码错误";
+                rpm.ResponseInfo = ex.Message;
             }
             return rpm;
         }
+        /// <summary>
+        /// 登录
+        /// </summary>
+        /// <param name="login"></param>
+        /// <returns></returns>
+        //[HttpPost]
+        //public async Task<ResponseModel> Login(AccountVM login)
+        //{
+        //    ResponseModel rpm = new ResponseModel();
+        //    if ((login.Account == "wintersir" || login.Account == "guest") && login.Password == "homejok.com")
+        //    {
+        //        rpm.ResponseState = true;
+        //        rpm.ResponseInfo = "登录成功";
+        //        rpm.ResponseData = new UserInfo()
+        //        {
+        //            Id = 1,
+        //            UserName = "wintersir",
+        //            Password = "homejok.com"
+        //        };
+        //    }
+        //    else
+        //    {
+        //        rpm.ResponseState = false;
+        //        rpm.ResponseInfo = "用户名或密码错误";
+        //    }
+        //    return rpm;
+        //}
         #endregion
 
         /// <summary>
@@ -62,12 +93,12 @@ namespace HomeJok.Api.Controllers
         public async Task<ResponseModel> GetUserInfo()
         {
             ResponseModel rpm = new ResponseModel();
-            List<UserInfo> ulist = await _userInfoService.GetUserInfo();
-            if (ulist.Count() > 0)
+            List<UserInfo> userList = await _userInfoService.GetUserInfo();
+            if (userList.Count() > 0)
             {
                 rpm.ResponseState = true;
                 rpm.ResponseInfo = "获取成功";
-                rpm.ResponseData = ulist;
+                rpm.ResponseData = userList;
             }
             else
             {
